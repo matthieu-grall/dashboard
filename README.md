@@ -28,6 +28,9 @@ A simple dashboard application designed for a fixed display in your living room 
   - Privacy protection news (EDPB)
   - Tech news (Numerama)
 
+The result looks like this:
+![Capture d'écran](img/dashboard.png)
+
 ## How It Works
 
 - `update.py`: Fetches weather data from Open-Meteo API and news from RSS feeds, generates `dashboard.json`
