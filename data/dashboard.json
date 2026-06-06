@@ -1,0 +1,90 @@
+{
+  "updated": "2026-06-06T14:52:30.937885",
+  "today": {
+    "weekday": "Samedi",
+    "date": "06/06/2026",
+    "temp_now": 17,
+    "temp_min": 14,
+    "temp_max": 19,
+    "rain": 88,
+    "rain_mm": 0.3,
+    "wind": 27,
+    "sunrise": "06:08",
+    "sunset": "22:02",
+    "aqi": 31,
+    "air_label": "Bon",
+    "icon": "🌧"
+  },
+  "forecast": [
+    {
+      "day": "Demain",
+      "min": 10,
+      "max": 21,
+      "rain": 0,
+      "rain_mm": 0.0,
+      "icon": "⛅"
+    },
+    {
+      "day": "Lundi",
+      "min": 12,
+      "max": 19,
+      "rain": 75,
+      "rain_mm": 3.0,
+      "icon": "🌧"
+    },
+    {
+      "day": "Mardi",
+      "min": 8,
+      "max": 20,
+      "rain": 13,
+      "rain_mm": 0.4,
+      "icon": "🌧"
+    },
+    {
+      "day": "Mercredi",
+      "min": 10,
+      "max": 18,
+      "rain": 12,
+      "rain_mm": 0.0,
+      "icon": "⛅"
+    },
+    {
+      "day": "Jeudi",
+      "min": 9,
+      "max": 20,
+      "rain": 18,
+      "rain_mm": 0.0,
+      "icon": "⛅"
+    },
+    {
+      "day": "Vendredi",
+      "min": 13,
+      "max": 23,
+      "rain": 20,
+      "rain_mm": 0.0,
+      "icon": "⛅"
+    }
+  ],
+  "news": {
+    "Monde (Courrier international)": [
+      "Qui est Gianni Infantino, tout-puissant patron de la Fifa ?",
+      "Dans un Paris caniculaire, l’impitoyable interdiction des baignades sauvages dans la Seine"
+    ],
+    "Rennes (Ouest France)": [
+      "« C’est ancré en moi » : ce passionné de Dragon Ball met aux enchères une partie de sa collection à Rennes  (Ouest-France)",
+      "Quand les restaurants ouvrent leurs cuisines à des réfugiés : le Refugee food festival revient à Rennes  (Ouest-France)"
+    ],
+    "Sécurité de l'information (ANSSI)": [
+      "Mise à jour du référentiel d’exigences PACS en version 2.0",
+      "Publication du rapport d'activité 2025 de l'ANSSI"
+    ],
+    "Protection de la vie privée (EDPB)": [
+      "Europe Day 2026: let’s celebrate together",
+      "Marking 10 years of the GDPR: the evolution of the European data protection landscape"
+    ],
+    "Tech (Numerama)": [
+      "On peut rêver en étant éveillé : la frontière entre les deux états n’existe pas vraiment",
+      "13 ans après, Rayman Legends revient et il est déjà moins cher en précommande"
+    ]
+  }
+}
