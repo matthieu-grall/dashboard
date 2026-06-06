@@ -1,4 +1,17 @@
-# Dashboard Project
+# dashboard
+
+[![CC BY 4.0][cc-by-shield]][cc-by]
+
+Those documents are licensed under a 
+[Creative Commons Attribution 4.0 International License][cc-by].
+
+[![CC BY 4.0][cc-by-image]][cc-by]
+
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
+[cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
+[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
+
+# Objective
 
 A simple dashboard application designed for a fixed display in your living room on a Raspberry Pi. The dashboard automatically refreshes at regular intervals to provide you with up-to-date information.
 
@@ -42,7 +55,7 @@ pip install requests feedparser
    python update.py
    ```
 
-2. Open `index - v0.4.html` in your browser to view the dashboard
+2. Open `index.html` in your browser to view the dashboard
 
 3. (Optional) Set up a cron job on your RPi to refresh the data periodically:
    ```bash
