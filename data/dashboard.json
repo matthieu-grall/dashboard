@@ -1,90 +1,75 @@
 {
-  "updated": "2026-06-06T14:52:30.937885",
   "today": {
-    "weekday": "Samedi",
-    "date": "06/06/2026",
-    "temp_now": 17,
-    "temp_min": 14,
-    "temp_max": 19,
-    "rain": 88,
-    "rain_mm": 0.3,
-    "wind": 27,
-    "sunrise": "06:08",
-    "sunset": "22:02",
-    "aqi": 31,
-    "air_label": "Bon",
-    "icon": "🌧"
+    "weather_code": 3,
+    "temp_now": 16,
+    "wind": 17,
+    "temp_min": 9,
+    "temp_max": 18,
+    "rain": 28,
+    "rain_mm": 6.13,
+    "sunrise": "06:07",
+    "sunset": "22:04",
+    "aqi": 27,
+    "air_label": "Moyen"
   },
   "forecast": [
     {
-      "day": "Demain",
-      "min": 10,
-      "max": 21,
-      "rain": 0,
-      "rain_mm": 0.0,
-      "icon": "⛅"
-    },
-    {
-      "day": "Lundi",
-      "min": 12,
-      "max": 19,
-      "rain": 75,
-      "rain_mm": 3.0,
-      "icon": "🌧"
-    },
-    {
-      "day": "Mardi",
-      "min": 8,
-      "max": 20,
-      "rain": 13,
-      "rain_mm": 0.4,
-      "icon": "🌧"
-    },
-    {
       "day": "Mercredi",
+      "weather_code": 51,
       "min": 10,
-      "max": 18,
-      "rain": 12,
-      "rain_mm": 0.0,
-      "icon": "⛅"
+      "max": 19,
+      "rain": 5,
+      "rain_mm": 0.6
     },
     {
       "day": "Jeudi",
+      "weather_code": 3,
       "min": 9,
-      "max": 20,
-      "rain": 18,
-      "rain_mm": 0.0,
-      "icon": "⛅"
+      "max": 19,
+      "rain": 0,
+      "rain_mm": 0.0
     },
     {
       "day": "Vendredi",
-      "min": 13,
-      "max": 23,
-      "rain": 20,
-      "rain_mm": 0.0,
-      "icon": "⛅"
+      "weather_code": 51,
+      "min": 15,
+      "max": 24,
+      "rain": 0,
+      "rain_mm": 0.1
+    },
+    {
+      "day": "Samedi",
+      "weather_code": 3,
+      "min": 14,
+      "max": 24,
+      "rain": 0,
+      "rain_mm": 0.0
+    },
+    {
+      "day": "Dimanche",
+      "weather_code": 3,
+      "min": 14,
+      "max": 28,
+      "rain": 0,
+      "rain_mm": 0.0
+    },
+    {
+      "day": "Lundi",
+      "weather_code": 2,
+      "min": 18,
+      "max": 30,
+      "rain": 0,
+      "rain_mm": 0.0
     }
   ],
   "news": {
-    "Monde (Courrier international)": [
-      "Qui est Gianni Infantino, tout-puissant patron de la Fifa ?",
-      "Dans un Paris caniculaire, l’impitoyable interdiction des baignades sauvages dans la Seine"
-    ],
     "Rennes (Ouest France)": [
-      "« C’est ancré en moi » : ce passionné de Dragon Ball met aux enchères une partie de sa collection à Rennes  (Ouest-France)",
-      "Quand les restaurants ouvrent leurs cuisines à des réfugiés : le Refugee food festival revient à Rennes  (Ouest-France)"
+      "En attendant son procès, le commanditaire présumé des incendies des Poêles et Cie, condamné pour abus de biens sociaux  (Ouest-France)",
+      "« On veut que les gens s’amusent » : Le Coup de folie, des fléchettes en plein cœur de Rennes  (Ouest-France)"
     ],
-    "Sécurité de l'information (ANSSI)": [
-      "Mise à jour du référentiel d’exigences PACS en version 2.0",
-      "Publication du rapport d'activité 2025 de l'ANSSI"
-    ],
-    "Protection de la vie privée (EDPB)": [
-      "Europe Day 2026: let’s celebrate together",
-      "Marking 10 years of the GDPR: the evolution of the European data protection landscape"
-    ],
-    "Tech (Numerama)": [
-      "On peut rêver en étant éveillé : la frontière entre les deux états n’existe pas vraiment",
-      "13 ans après, Rayman Legends revient et il est déjà moins cher en précommande"
+    "Monde (Courrier international)": [
+      "Grossesses à l’adolescence : le Nicaragua en tête du classement en Amérique centrale",
+      "Au Canada, une “récession technique” ou “à part entière” ?"
     ]
   }
 }

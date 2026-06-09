@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Dashboard
+Comment=Launches the weather and news dashboard in kiosk mode
+# Replace /home/ht/dashboard with the actual path to your project folder
+Exec=bash /home/ht/dashboard/start.sh
+Icon=utilities-system-monitor
+Terminal=false
+StartupNotify=false

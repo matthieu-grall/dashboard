@@ -1,125 +1,330 @@
-* {
-    box-sizing: border-box;
+/* =============================================================================
+   style.css
+   Dark-themed dashboard layout for a fixed living-room display (Raspberry Pi).
+
+   Design tokens are defined as CSS custom properties in :root so every colour
+   and spacing value has a single source of truth.
+
+   External dependencies (loaded in index.html):
+     - Google Fonts: Bebas Neue (display), Inter (body), Roboto Mono (numbers)
+     - Weather Icons 2.0.10 (icon font via cdnjs)
+============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css');
+
+/* -----------------------------------------------------------------------------
+   Design tokens
+----------------------------------------------------------------------------- */
+
+:root {
+    --bg:          #0d0f14;   /* page background — near-black with a blue tint  */
+    --bg-panel:    #1a1d25;   /* panel background — slightly lighter             */
+    --border:      #2a2d38;   /* panel borders and internal dividers             */
+    --text:        #e8eaf0;   /* primary text                                    */
+    --text-muted:  #6b7280;   /* secondary text (labels, sources)                */
+    --accent-warm: #f97316;   /* warm orange — clock, max temperatures           */
+    --accent-cold: #60a5fa;   /* cool blue   — min temperatures, rain %          */
+    --aqi-good:    #34d399;   /* AQI ≤ 20 — green                                */
+    --aqi-mid:     #fbbf24;   /* AQI ≤ 40 — amber                                */
+    --aqi-bad:     #f87171;   /* AQI > 40 — red                                  */
+    --radius:      12px;
+    --gap:         14px;
 }
 
-html,
-body {
+/* -----------------------------------------------------------------------------
+   Reset & base
+----------------------------------------------------------------------------- */
+
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    height: 100%;
-    background: #111;
-    color: #eee;
-    font-family: Arial, sans-serif;
 }
+
+html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* -----------------------------------------------------------------------------
+   Page grid
+   Two columns on top (today | forecast), full-width news strip at the bottom.
+   The top row fills all available height; the bottom row sizes to its content.
+----------------------------------------------------------------------------- */
 
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr auto;
     grid-template-areas:
-        "today info"
-        "forecast info";
-    gap: 15px;
-    padding: 15px;
+        "today forecast"
+        "info  info";
+    gap: var(--gap);
+    padding: var(--gap);
     height: 100vh;
 }
 
-#today-panel {
-    grid-area: today;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
+#today-panel    { grid-area: today; }
+#forecast-panel { grid-area: forecast; }
+#info-panel     { grid-area: info; }
 
-#forecast-panel {
-    grid-area: forecast;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-#info-panel {
-    grid-area: info;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-}
+/* -----------------------------------------------------------------------------
+   Panels — shared base style
+----------------------------------------------------------------------------- */
 
 .panel {
-    border: 1px solid #444;
-    border-radius: 10px;
-    padding: 25px;
-    overflow-y: auto;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    overflow: hidden;
 }
 
-h1 {
-    margin: 0 0 20px 0;
-    font-size: 1.5rem;
+/* Today panel uses flex-column so the weather block can vertically center
+   in the space below the date/clock block. */
+#today-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Forecast panel uses flex-column + space-between so the 6 day rows spread
+   evenly over the full panel height regardless of screen resolution. */
+#forecast-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* -----------------------------------------------------------------------------
+   Today — date & clock block
+   Date (muted, small) sits above the clock (Bebas Neue, orange, very large).
+   Together they form a single visual unit at the top of the panel.
+----------------------------------------------------------------------------- */
+
+.date-block {
+    margin-bottom: 18px;
+}
+
+.date {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.clock {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.2rem;
+    color: var(--accent-warm);
+    line-height: 1;
+    letter-spacing: 0.03em;
+}
+
+/* -----------------------------------------------------------------------------
+   Today — current temperature
+   Wrapper takes all remaining height so icon + temperature are vertically
+   centred between the clock and the bottom of the panel.
+----------------------------------------------------------------------------- */
+
+.big-temp-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .big-temp {
-    font-size: 4rem;
-    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.big-temp .wi {
+    font-size: 3rem;
+    color: var(--text-muted);
     line-height: 1;
 }
 
-.day-line {
+.big-temp .temp-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5.5rem;
+    line-height: 1;
+    color: var(--text);
+}
+
+/* -----------------------------------------------------------------------------
+   Today — weather detail grid (min/max, sunrise/sunset, rain, wind, AQI)
+   Two-column grid; each row pairs an icon with a monospace value.
+----------------------------------------------------------------------------- */
+
+.weather-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 20px;
+}
+
+.weather-details .detail {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 12px 8px;
-    border-bottom: 1px solid #333;
-    font-size: 1.1rem;
-    gap: 15px;
+    gap: 7px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.weather-details .detail .wi {
+    font-size: 1rem;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Monospace for all numeric values so digits don't shift width */
+.weather-details .detail .val {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.88rem;
+    color: var(--text);
+}
+
+/* Functional colour coding */
+.val.temp-min { color: var(--accent-cold); }
+.val.temp-max { color: var(--accent-warm); }
+.val.aqi-good { color: var(--aqi-good); }
+.val.aqi-mid  { color: var(--aqi-mid); }
+.val.aqi-bad  { color: var(--aqi-bad); }
+
+/* -----------------------------------------------------------------------------
+   Forecast — one row per day
+   Four-column grid: day name | icon | min/max temps | rain probability + mm
+   flex:1 on each row lets them share the panel height equally.
+----------------------------------------------------------------------------- */
+
+.day-line {
+    display: grid;
+    grid-template-columns: 90px 28px 1fr 1fr;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    flex: 1;
+    border-bottom: 1px solid var(--border);
 }
 
 .day-line:last-child {
     border-bottom: none;
 }
 
-.category {
-    margin-bottom: 25px;
+.day-line .day-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
 }
 
-.category-title {
-    font-weight: bold;
+.day-line .wi {
     font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: #aaa;
+    color: var(--text-muted);
+    text-align: center;
 }
 
-.category > div:not(.category-title) {
-    font-size: 1rem;
-    line-height: 1.5;
-    padding: 5px 0;
+.day-line .temps {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.88rem;
+    white-space: nowrap;
 }
 
-/* Responsive pour petits écrans */
-@media (max-width: 1200px) {
+.day-line .temps .t-min { color: var(--accent-cold); }
+.day-line .temps .t-max { color: var(--accent-warm); }
+.day-line .temps .sep   { color: var(--border); margin: 0 3px; }
+
+.day-line .rain {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-align: right;
+    white-space: nowrap;
+}
+
+.day-line .rain .rain-pct {
+    color: var(--accent-cold);
+    opacity: 0.85;
+}
+
+/* -----------------------------------------------------------------------------
+   News strip — compact 2×2 grid
+   Left column: local news (Rennes). Right column: world news.
+   No truncation; source label displayed below each headline in muted colour.
+----------------------------------------------------------------------------- */
+
+#info-panel {
+    padding: 18px 26px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 30px;
+}
+
+.news-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Remove top padding from first row (items 1 and 2) */
+.news-item:nth-child(1),
+.news-item:nth-child(2) {
+    padding-top: 0;
+}
+
+.news-item .headline {
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--text);
+}
+
+.news-item .source {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+}
+
+/* -----------------------------------------------------------------------------
+   Responsive breakpoints
+   Below 900px: single-column stacked layout (portrait tablet / small screen).
+   Below 600px: reduce padding and font sizes for very small screens.
+----------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
     .grid {
         grid-template-columns: 1fr;
         grid-template-areas:
             "today"
             "forecast"
             "info";
+        height: auto;
+        min-height: 100vh;
     }
+
+    .clock                  { font-size: 3rem; }
+    .big-temp .temp-value   { font-size: 4rem; }
+    .news-grid              { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 768px) {
-    .panel {
-        padding: 20px;
-    }
-    
-    .big-temp {
-        font-size: 3rem;
-    }
-    
-    h1 {
-        font-size: 1.3rem;
-    }
-    
-    .day-line {
-        font-size: 1rem;
-        padding: 10px 5px;
-    }
+@media (max-width: 600px) {
+    .panel  { padding: 16px; }
+    .clock  { font-size: 2.6rem; }
 }
